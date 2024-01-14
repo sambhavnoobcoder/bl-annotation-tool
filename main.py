@@ -12,7 +12,7 @@ def draw_rectangles(image, rectangles, selected_rectangle):
 
         # Display the label on the rectangle
         label = rectangles[i][-1]
-        cv2.putText(img_copy, f"Class {label}", (rect[0], rect[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+        cv2.putText(img_copy, f"Class {label}", (rect[0], rect[1] - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
 
     return img_copy
 
