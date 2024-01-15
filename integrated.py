@@ -12,7 +12,7 @@ def yolo_predict(image, model):
         boxes = result.boxes.cpu().numpy()
         for box in boxes:
             r = box.xyxy[0].astype(int)
-            predicted_rectangles.append((r[0], r[1], r[2], r[3], 1))  # Assuming class label is 1
+            predicted_rectangles.append((r[0], r[1], r[2], r[3], 0))  # Assuming class label is 1
 
     return predicted_rectangles
 
@@ -101,7 +101,7 @@ for image_file in image_files:
     drawing = False
     top_left_pt, bottom_right_pt = (-1, -1), (-1, -1)
     selected_rectangle = 0  # Set to 0 to highlight the first predicted annotation
-    current_class = 1  # Default class label
+    current_class = 0  # Default class label
 
     # Create a window and set the callback function for mouse events
     cv2.namedWindow('Image Annotation')
@@ -117,7 +117,7 @@ for image_file in image_files:
         # Press 'd' to delete the selected annotation
         # Press 'p' to select the previous annotation
         key = cv2.waitKey(1)
-        if key == ord('1') or key == ord('2'):
+        if key == ord('0') or key == ord('1'):
             if selected_rectangle != -1:
                 current_class = int(chr(key))
                 # Update the label in the rectangles list
