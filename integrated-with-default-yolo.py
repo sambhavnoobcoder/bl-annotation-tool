@@ -137,8 +137,13 @@ for image_file in image_files:
 
         if key == ord('0') or key == ord('1'):
             if selected_rectangle != -1:
-                current_class = labels[selected_rectangle]
-                rectangles[selected_rectangle][-1] = current_class
+                # Update current_class based on the key pressed
+                current_class = int(chr(key))
+
+                # Convert the tuple to a list, update the label, and then convert back to a tuple
+                rect_list = list(rectangles[selected_rectangle])
+                rect_list[-1] = current_class
+                rectangles[selected_rectangle] = tuple(rect_list)
 
         elif key == ord('s'):
             save_annotation(image, rectangles, image_path, output_directory)
